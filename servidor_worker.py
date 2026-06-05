@@ -3,6 +3,7 @@ import threading
 import json
 import time
 import random
+import sys
 
 HOST_WORKER = '127.0.0.1'
 
@@ -19,8 +20,11 @@ def verificar_puerto_libre(puerto):
 
 if verificar_puerto_libre(65401):
     PORT_WORKER = 65401
-else:
+elif verificar_puerto_libre(65402):
     PORT_WORKER = 65402
+else:
+    print("Ambos servidores se encuentran activos.")
+    sys.exit(1)
 
 def procesar_en_hilo(conexion):
     try:
